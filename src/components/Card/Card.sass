@@ -1,0 +1,42 @@
+.card 
+  margin: 25px
+  width: 210px
+  height: 260px
+  text-align: center
+  border: 1px solid #B3BAB9
+  border-radius: 10px
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2)
+  transition: transform .3s 
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: center
+  &:hover
+    transform: scale(1.05)
+  &__img
+    width: 170px
+    height: 140px
+  &__text
+    margin: 0
+    font-size: 18px
+    font-weight: 400
+  &__bottom
+    display: flex
+    justify-content: space-around
+    align-items: center
+    margin: 20px 0 5px 0
+    width: 100%
+    span
+      opacity: .3
+      font-weight: 600
+    img
+      cursor: pointer
+
+.like 
+  position: absolute
+  float: left
+  width: 32px
+  height: 32px
+  margin: 10px
+
+

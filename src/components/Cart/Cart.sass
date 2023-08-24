@@ -1,0 +1,69 @@
+.overlay
+  position: absolute
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  background-color: rgba(0, 0, 0, .5)
+  z-index: 2
+  
+  
+.drawer
+  position: absolute
+  width: 400px
+  height: 100%
+  right: 0px
+  background-color: #fff
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2)
+  &__title
+    display: flex
+    justify-content: space-between
+    margin: 0px 30px 10px 30px
+    img
+      width: 25px
+  &__card
+    display: flex
+    flex-direction: column
+    align-items: center
+    overflow: auto
+    height: 80%
+  &__footer
+    li
+      display: flex
+      justify-content: space-between
+      margin-bottom: 10px
+      font-size: 18px
+      div
+        flex: 1
+        border-bottom: 1px dashed #B3BAB9
+        margin: 0 10px
+      b
+        margin-right: 30px
+.btnCart
+  margin-top: 20px
+  width: 80%
+  border: none
+  border-radius: 20px
+  height: 45px
+  color: #fff
+  font-size: 20px
+  background-color: #9DD558
+  transition: background .3s
+  cursor: pointer
+  &:hover
+    background-color: lighten(#9DD558, 10%)
+  &:active
+    background-color: darken(#9DD558, 10%)
+
+.cartIsEmpty
+  margin-top: 100px
+  h3
+    font-size: 30px
+    margin: 0 
+
+.hidden
+  display: none
+
+
+
+

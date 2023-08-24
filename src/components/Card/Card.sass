@@ -1,4 +1,8 @@
 .card 
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: center
   margin: 25px
   width: 210px
   height: 260px
@@ -7,10 +11,6 @@
   border-radius: 10px
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2)
   transition: transform .3s 
-  display: flex
-  flex-direction: column
-  justify-content: space-between
-  align-items: center
   &:hover
     transform: scale(1.05)
   &__img

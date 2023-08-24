@@ -1,16 +1,29 @@
+import { useState } from "react";
 import "./Card.sass";
 
-function Card() {
+function Card({ image, name, price, onPlus }) {
+  //Хук для сены кнопки карточки (добавлено/не добавлено в корзину)
+  const [isAdded, setIsAdded] = useState(false);
+
+  // Функция нажатия плюсика карточки, также передает объект в app.jsx для функции добавления карточки в корзину
+  const addToCart = () => {
+    setIsAdded(!isAdded);
+    onPlus();
+  };
   return (
     <div className="card">
-      <img className="card__img" src="/img/sneakers/1.jpg" alt="Sneakers" />
-      <p className="card__text">fff</p>
+      <img className="card__img" src={image} alt="Sneakers" />
+      <p className="card__text">{name}</p>
       <div className="card__bottom">
         <div>
           <span>Цена: </span>
-          <b>222 руб.</b>
+          <b>{price} руб.</b>
         </div>
-        <img src="/img/+.svg" alt="" />
+        <img
+          onClick={addToCart}
+          src={isAdded ? "/img/++.svg" : "/img/+.svg"}
+          alt=""
+        />
       </div>
     </div>
   );

@@ -1,14 +1,19 @@
 import "./CartCard.sass";
 
-function CartCard({name, price, img, id, onRemove}) {
+function CartCard({ name, price, image, onDelete }) {
   return (
     <div className="cartCard">
-      <img className="cartCard__img" src={img} alt="Sneakers" />
+      <img className="cartCard__img" src={image} alt="Sneakers" />
       <div className="cartCard__center">
         <p className="cartCard__center-text">{name}</p>
-          <b>{price} руб.</b>
+        <b>{price} руб.</b>
       </div>
-      <img className="cartCard__btn" src="/img/cart-remove.svg" alt="" onClick={() => onRemove(id)} />
+      <img
+        onClick={() => onDelete()}
+        className="cartCard__btn"
+        src="/img/cart-remove.svg"
+        alt=""
+      />
     </div>
   );
 }

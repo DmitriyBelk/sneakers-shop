@@ -1,6 +1,6 @@
 import "./Header.sass";
 
-function Header() {
+function Header({ onOpenCart }) {
   return (
     <header className="header">
       <div className="header__left">
@@ -12,7 +12,7 @@ function Header() {
       </div>
       <ul className="header__right">
         <li>
-          <img src="img/cart.svg" alt="logo" />
+          <img onClick={onOpenCart} src="img/cart.svg" alt="logo" />
         </li>
         <li>
           <img src="img/user.svg" alt="logo" />

@@ -2,73 +2,75 @@
   "sneakers": [
     {
       "id": 1,
-      "image": "/img/sneakers/1.jpeg",
+      "image": "/img/sneakers/1.jpg",
       "name": "Мужские кросовки Nike Blazer Mid Suede",
       "price": 12999,
       "like": false
     },
     {
       "id": 2,
-      "image": "/img/sneakers/2.jpeg",
+      "image": "/img/sneakers/2.jpg",
       "name": "Мужские кросовки Nike Air Max 270",
       "price": 12999,
       "like": false
     },
     {
       "id": 3,
-      "image": "/img/sneakers/3.jpeg",
+      "image": "/img/sneakers/3.jpg",
       "name": "Мужские кросовки Nike Blazer Mid Suede",
       "price": 8499,
       "like": false
     },
     {
       "id": 4,
-      "image": "/img/sneakers/4.jpeg",
+      "image": "/img/sneakers/4.jpg",
       "name": "Мужские кросовки Puma X Aka Buku Future Rider",
       "price": 8999,
       "like": false
     },
     {
       "id": 5,
-      "image": "/img/sneakers/5.jpeg",
+      "image": "/img/sneakers/5.jpg",
       "name": "Мужские кросовки Under Armour Curry 8",
       "price": 15195,
       "like": false
     },
     {
       "id": 6,
-      "image": "/img/sneakers/6.jpeg",
-      "name": "Ролл Филадельфия классическая",
-      "price": 850,
+      "image": "/img/sneakers/6.jpg",
+      "name": "Мужские кросовки Under Armour Jump",
+      "price": 13399,
       "like": false
     },
     {
       "id": 7,
-      "image": "/img/sneakers/7.jpeg",
+      "image": "/img/sneakers/7.jpg",
       "name": "Мужские кросовки Nike Kyrie 7",
       "price": 11290,
       "like": false
     },
     {
       "id": 8,
-      "image": "/img/sneakers/8.jpeg",
+      "image": "/img/sneakers/8.jpg",
       "name": "Мужские кросовки Jordan Air 11",
       "price": 10799,
       "like": false
     },
     {
       "id": 9,
-      "image": "/img/sneakers/9.jpeg",
+      "image": "/img/sneakers/9.jpg",
       "name": "Мужские кросовки Nike Lebron XVII",
       "price": 18499,
       "like": false
     },
     {
       "id": 10,
-      "image": "/img/sneakers/10.jpeg",
+      "image": "/img/sneakers/10.jpg",
       "name": "Мужские кросовки Nike Future Ride Low",
       "price": 13999,
       "like": false
     }
-  ]
+  ],
+
+  "cart": []
 }

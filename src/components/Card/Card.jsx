@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Card.sass";
 
-function Card({ image, name, price, onPlus }) {
+function Card({ image, name, price, like, onPlus }) {
   //Хук для сены кнопки карточки (добавлено/не добавлено в корзину)
   const [isAdded, setIsAdded] = useState(false);
 
@@ -12,6 +12,7 @@ function Card({ image, name, price, onPlus }) {
   };
   return (
     <div className="card">
+      <img className="like" src={like ? "/img/heart-on.svg" : "/img/heart-off.svg"} alt="" />
       <img className="card__img" src={image} alt="Sneakers" />
       <p className="card__text">{name}</p>
       <div className="card__bottom">

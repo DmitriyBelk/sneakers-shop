@@ -1,4 +1,5 @@
 .card 
+  position: relative
   display: flex
   flex-direction: column
   justify-content: space-between
@@ -13,6 +14,9 @@
   transition: transform .3s 
   &:hover
     transform: scale(1.05)
+  .like
+    position: absolute
+    margin-left: -140px
   &__img
     width: 170px
     height: 140px

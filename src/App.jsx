@@ -15,16 +15,25 @@ function App() {
   const [items, setItems] = useState([]);
   // Хранение массива кросовок для корзины
   const [cartItems, setCartItems] = useState([]);
+  //Хук для данных поисковой строки
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:4000/sneakers")
-      .then((res) => res.json())
-      .then((json) => setItems(json));
+    // fetch("https://64e763f1b0fd9648b78fe453.mockapi.io/items")
+    //   .then((res) => res.json())
+    //   .then((json) => setItems(json));
+    axios
+      .get("https://64e763f1b0fd9648b78fe453.mockapi.io/items")
+      .then((res) => setItems(res.data));
+    axios
+      .get("https://64e763f1b0fd9648b78fe453.mockapi.io/cart")
+      .then((res) => setCartItems(res.data));
   }, []);
 
   // Функция добавления объектов в массив содержимого корзины
   const onAddToCart = (item) => {
     !cartItems.includes(item) && setCartItems((prev) => [...cartItems, item]);
+    axios.post("https://64e763f1b0fd9648b78fe453.mockapi.io/cart", item);
   };
 
   //Функция удаления объектов из массива содержимого корзины
@@ -33,10 +42,19 @@ function App() {
       setCartItems(cartItems.filter((cartItem) => cartItem !== item));
   };
 
+  // Функция записи данных в поисковую строку
+  const onChangeSearchInput = (event) => {
+    console.log(event.target.value);
+    setSearchValue(event.target.value);
+  };
+
   return (
     <div className="App">
       <Header onOpenCart={() => setCartUsage(!cartUsage)} />
-      <Search />
+      <Search
+        onChangeSearchInput={onChangeSearchInput}
+        searchValue={searchValue}
+      />
       {cartUsage && (
         <Cart
           cartItems={cartItems}
@@ -45,9 +63,13 @@ function App() {
         />
       )}
       <div className="content">
-        {items.map((item, i) => (
-          <Card onPlus={() => onAddToCart(item)} key={i} {...item} />
-        ))}
+        {items
+          .filter((item) =>
+            item.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
+          )
+          .map((item, i) => (
+            <Card onPlus={() => onAddToCart(item)} key={i} {...item} />
+          ))}
       </div>
     </div>
   );

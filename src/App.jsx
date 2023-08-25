@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 import Card from "./components/Card/Card";
 import Search from "./components/Search/Search";
 import Cart from "./components/Cart/Cart";
+import Skeleton from "./components/Card/Skeleton";
 
 import "./App.sass";
 
@@ -17,6 +18,8 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   //Хук для данных поисковой строки
   const [searchValue, setSearchValue] = useState("");
+  // флаг загрузились данные с сервера или нет
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Запрос на сервер через fetch
@@ -42,6 +45,7 @@ function App() {
       );
       setCartItems(cartResponse.data);
       setItems(itemsResponse.data);
+      // setIsLoading(!isLoading);
     }
     fetchData();
   }, []);
@@ -97,7 +101,9 @@ function App() {
         />
       )}
       <div className="content">
-        {items
+        {/* Если загрузка с сервера не завершена, то отображаем карточки-пустышки, иначе отображаем сами карточки */}
+        {isLoading ? [...new Array(8)].map((_, i) => <Skeleton key={i} />) :
+        items
           // Фильтрация по поиску
           .filter((item) =>
             item.name.toLowerCase().includes(searchValue.toLocaleLowerCase())

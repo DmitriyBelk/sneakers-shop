@@ -19,15 +19,31 @@ function App() {
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
+    // Запрос на сервер через fetch
     // fetch("https://64e763f1b0fd9648b78fe453.mockapi.io/items")
     //   .then((res) => res.json())
     //   .then((json) => setItems(json));
-    axios
-      .get("https://64e763f1b0fd9648b78fe453.mockapi.io/items")
-      .then((res) => setItems(res.data));
-    axios
-      .get("https://64e763f1b0fd9648b78fe453.mockapi.io/cart")
-      .then((res) => setCartItems(res.data));
+
+    // Пример запроса на сервер через axios
+    // axios
+    //   .get("https://64e763f1b0fd9648b78fe453.mockapi.io/items")
+    //   .then((res) => setItems(res.data));
+    // axios
+    //   .get("https://64e763f1b0fd9648b78fe453.mockapi.io/cart")
+    //   .then((res) => setCartItems(res.data));
+
+    //Создаем внутри useEffect асинхронную функцию (сначала дожидается загрузки всех данных с сервера, а потом передает в хуки)
+    async function fetchData() {
+      const cartResponse = await axios.get(
+        "https://64e763f1b0fd9648b78fe453.mockapi.io/cart"
+      );
+      const itemsResponse = await axios.get(
+        "https://64e763f1b0fd9648b78fe453.mockapi.io/items"
+      );
+      setCartItems(cartResponse.data);
+      setItems(itemsResponse.data);
+    }
+    fetchData();
   }, []);
 
   // Функция добавления объектов в массив содержимого корзины
@@ -82,11 +98,18 @@ function App() {
       )}
       <div className="content">
         {items
+          // Фильтрация по поиску
           .filter((item) =>
             item.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
           )
+          // Выводим карточки на экран
           .map((item, i) => (
-            <Card onPlus={() => onAddToCart(item)} key={i} {...item} />
+            <Card
+              onPlus={() => onAddToCart(item)}
+              key={i}
+              {...item}
+              added={cartItems.some((obj) => obj.name === item.name)}
+            />
           ))}
       </div>
     </div>

@@ -38,8 +38,10 @@ function App() {
 
   //Функция удаления объектов из массива содержимого корзины
   const onDeleteFromCart = (item) => {
-    cartItems.includes(item) &&
-      setCartItems(cartItems.filter((cartItem) => cartItem !== item));
+    // cartItems.includes(item) &&
+    //   setCartItems(cartItems.filter((cartItem) => cartItem !== item));
+    setCartItems((prev) => prev.filter((prevItem) => prevItem.id !== item.id));
+    axios.delete(`https://64e763f1b0fd9648b78fe453.mockapi.io/cart/${item.id}`);
   };
 
   // Функция записи данных в поисковую строку
@@ -50,7 +52,10 @@ function App() {
 
   return (
     <div className="App">
-      <Header onOpenCart={() => setCartUsage(!cartUsage)} />
+      <Header
+        onOpenCart={() => setCartUsage(!cartUsage)}
+        cartItems={cartItems}
+      />
       <Search
         onChangeSearchInput={onChangeSearchInput}
         searchValue={searchValue}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Card.sass";
 
-function Card({ image, name, price, like, onPlus }) {
+function Card({ image, name, price, onPlus }) {
   //Хук для сены кнопки карточки (добавлено/не добавлено в корзину)
   const [isAdded, setIsAdded] = useState(false);
   // Хук для семну иконки "избранного"

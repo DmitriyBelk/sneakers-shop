@@ -31,9 +31,22 @@ function App() {
   }, []);
 
   // Функция добавления объектов в массив содержимого корзины
-  const onAddToCart = (item) => {
-    !cartItems.includes(item) && setCartItems((prev) => [...cartItems, item]);
-    axios.post("https://64e763f1b0fd9648b78fe453.mockapi.io/cart", item);
+  const onAddToCart = async (item) => {
+    try {
+      if (cartItems.find((obj) => obj.id === item.id)) {
+        setCartItems((prev) => prev.filter((obj) => obj.id !== item.id));
+        axios.delete(
+          `https://64e763f1b0fd9648b78fe453.mockapi.io/cart/${item.id}`
+        );
+      } else {
+        axios.post("https://64e763f1b0fd9648b78fe453.mockapi.io/cart", item);
+        setCartItems((prev) => [...cartItems, item]);
+      }
+    } catch (error) {
+      alert("Cервер затупил!");
+    }
+    // !cartItems.includes(item) && setCartItems((prev) => [...cartItems, item]);
+    // axios.post("https://64e763f1b0fd9648b78fe453.mockapi.io/cart", item);
   };
 
   //Функция удаления объектов из массива содержимого корзины

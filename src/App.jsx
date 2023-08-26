@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
 import Header from "./components/Header/Header";
@@ -8,6 +8,8 @@ import Cart from "./components/Cart/Cart";
 import Skeleton from "./components/Card/Skeleton";
 
 import "./App.sass";
+
+export const AppContext = createContext({});
 
 function App() {
   // Хук для открытия и закрытия корзины
@@ -45,7 +47,7 @@ function App() {
       );
       setCartItems(cartResponse.data);
       setItems(itemsResponse.data);
-      // setIsLoading(!isLoading);
+      setIsLoading(!isLoading);
     }
     fetchData();
   }, []);
@@ -79,46 +81,47 @@ function App() {
 
   // Функция записи данных в поисковую строку
   const onChangeSearchInput = (event) => {
-    console.log(event.target.value);
     setSearchValue(event.target.value);
   };
 
+
+
   return (
-    <div className="App">
-      <Header
-        onOpenCart={() => setCartUsage(!cartUsage)}
-        cartItems={cartItems}
-      />
-      <Search
-        onChangeSearchInput={onChangeSearchInput}
-        searchValue={searchValue}
-      />
-      {cartUsage && (
-        <Cart
-          cartItems={cartItems}
-          onDelete={(item) => onDeleteFromCart(item)}
-          onCloseCart={() => setCartUsage(!cartUsage)}
+    <AppContext.Provider value={{cartItems, items, searchValue, onChangeSearchInput}}>
+      <div className="App">
+        <Header
+          onOpenCart={() => setCartUsage(!cartUsage)}
         />
-      )}
-      <div className="content">
-        {/* Если загрузка с сервера не завершена, то отображаем карточки-пустышки, иначе отображаем сами карточки */}
-        {isLoading ? [...new Array(8)].map((_, i) => <Skeleton key={i} />) :
-        items
-          // Фильтрация по поиску
-          .filter((item) =>
-            item.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
-          )
-          // Выводим карточки на экран
-          .map((item, i) => (
-            <Card
-              onPlus={() => onAddToCart(item)}
-              key={i}
-              {...item}
-              added={cartItems.some((obj) => obj.name === item.name)}
-            />
-          ))}
+        <Search/>
+        {cartUsage && (
+          <Cart
+            onDelete={(item) => onDeleteFromCart(item)}
+            onCloseCart={() => setCartUsage(!cartUsage)}
+          />
+        )}
+        <div className="content">
+          {/* Если загрузка с сервера не завершена, то отображаем карточки-пустышки, иначе отображаем карточки товара */}
+          {isLoading
+            ? [...new Array(8)].map((_, i) => <Skeleton key={i} />)
+            : items
+                // Фильтрация по поиску
+                .filter((item) =>
+                  item.name
+                    .toLowerCase()
+                    .includes(searchValue.toLocaleLowerCase())
+                )
+                // Выводим карточки на экран
+                .map((item, i) => (
+                  <Card
+                    onPlus={() => onAddToCart(item)}
+                    key={i}
+                    {...item}
+                    added={cartItems.some((obj) => obj.name === item.name)}
+                  />
+                ))}
+        </div>
       </div>
-    </div>
+    </AppContext.Provider>
   );
 }
 

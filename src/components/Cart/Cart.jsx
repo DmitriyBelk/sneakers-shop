@@ -1,7 +1,10 @@
+import { useContext } from "react";
+import { AppContext } from "../../App";
 import "./Cart.sass";
 import CartCard from "./CartCard";
 
-function Cart({ onCloseCart, onDelete, cartItems }) {
+function Cart({ onCloseCart, onDelete }) {
+  const {cartItems} = useContext(AppContext)
   console.log(cartItems);
   return (
     <div className="overlay">

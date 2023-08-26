@@ -1,6 +1,9 @@
+import { useContext } from "react";
+import { AppContext } from "../../App";
 import "./Search.sass";
 
-function Search({onChangeSearchInput, searchValue}) {
+function Search() {
+  const {searchValue, onChangeSearchInput} = useContext(AppContext)
   return (
     <div className="search">
       <h2>

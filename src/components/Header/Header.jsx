@@ -1,6 +1,9 @@
+import { useContext } from "react";
+import { AppContext } from "../../App";
 import "./Header.sass";
 
-function Header({ onOpenCart, cartItems }) {
+function Header({ onOpenCart }) {
+  const {cartItems} = useContext(AppContext)
   return (
     <header className="header">
       <div className="header__left">
@@ -14,9 +17,7 @@ function Header({ onOpenCart, cartItems }) {
         <li onClick={onOpenCart}>
           <img src="img/cart.svg" alt="logo" />
           {/* Если в корзине есть товары, то выводим сумму покупок возле иконки корзины */}
-          {cartItems.length > 0 && (
-            <span>{cartItems.reduce((sum, item) => sum + item.price, 0)}</span>
-          )}
+          {cartItems.length > 0 && <span>{cartItems.reduce((sum, item) => sum + item.price, 0)}</span>}
         </li>
         <li>
           <img src="img/user.svg" alt="logo" />

@@ -90,7 +90,7 @@ function App() {
 
   return (
     <AppContext.Provider value={{cartItems, items, searchValue, onChangeSearchInput, isItemAdded}}>
-      <div className="App">
+      <div className="App"> 
         <Header
           onOpenCart={() => setCartUsage(!cartUsage)}
         />

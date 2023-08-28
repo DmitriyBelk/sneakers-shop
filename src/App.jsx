@@ -84,10 +84,12 @@ function App() {
     setSearchValue(event.target.value);
   };
 
-
+  const isItemAdded = (id) => {
+    return cartItems.some((obj) => obj.id == id)
+  }
 
   return (
-    <AppContext.Provider value={{cartItems, items, searchValue, onChangeSearchInput}}>
+    <AppContext.Provider value={{cartItems, items, searchValue, onChangeSearchInput, isItemAdded}}>
       <div className="App">
         <Header
           onOpenCart={() => setCartUsage(!cartUsage)}
@@ -116,7 +118,7 @@ function App() {
                     onPlus={() => onAddToCart(item)}
                     key={i}
                     {...item}
-                    added={cartItems.some((obj) => obj.name === item.name)}
+                    // added={cartItems.some((obj) => obj.name === item.name)}
                   />
                 ))}
         </div>

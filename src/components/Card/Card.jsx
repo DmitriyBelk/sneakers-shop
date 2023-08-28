@@ -1,17 +1,20 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AppContext } from "../../App";
 import "./Card.sass";
 
-function Card({ image, name, price, onPlus, added = false }) {
+function Card({ image, name, price, onPlus, id, added = false }) {
+  const { isItemAdded } = useContext(AppContext);
   //Хук для сены кнопки карточки (добавлено/не добавлено в корзину)
-  const [isAdded, setIsAdded] = useState(added);
+  // const [isAdded, setIsAdded] = useState(added);
   // Хук для семну иконки "избранного"
   const [isFavourite, setIsFavourite] = useState(false);
 
   // Функция нажатия плюсика карточки, также передает объект в app.jsx для функции добавления карточки в корзину
   const addToCart = () => {
-    setIsAdded(!isAdded);
+    // setIsAdded(!isAdded);
     onPlus();
   };
+
 
   return (
     <div className="card">
@@ -30,7 +33,7 @@ function Card({ image, name, price, onPlus, added = false }) {
         </div>
         <img
           onClick={addToCart}
-          src={isAdded ? "/img/++.svg" : "/img/+.svg"}
+          src={isItemAdded(id) ? "/img/++.svg" : "/img/+.svg"}
           alt=""
         />
       </div>

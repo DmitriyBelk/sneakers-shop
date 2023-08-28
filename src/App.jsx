@@ -21,7 +21,7 @@ function App() {
   //Хук для данных поисковой строки
   const [searchValue, setSearchValue] = useState("");
   // флаг загрузились данные с сервера или нет
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     // Запрос на сервер через fetch
@@ -47,7 +47,7 @@ function App() {
       );
       setCartItems(cartResponse.data);
       setItems(itemsResponse.data);
-      setIsLoading(!isLoading);
+      setIsLoading(true);
     }
     fetchData();
   }, []);
@@ -85,7 +85,7 @@ function App() {
   };
 
   const isItemAdded = (id) => {
-    return cartItems.some((obj) => obj.id == id)
+    return cartItems.some((obj) => Number(obj.id) === Number(id))
   }
 
   return (
@@ -103,7 +103,7 @@ function App() {
         )}
         <div className="content">
           {/* Если загрузка с сервера не завершена, то отображаем карточки-пустышки, иначе отображаем карточки товара */}
-          {isLoading
+          {!isLoading
             ? [...new Array(8)].map((_, i) => <Skeleton key={i} />)
             : items
                 // Фильтрация по поиску

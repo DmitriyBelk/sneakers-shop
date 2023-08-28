@@ -4,8 +4,6 @@ import "./Card.sass";
 
 function Card({ image, name, price, onPlus, id, added = false }) {
   const { isItemAdded } = useContext(AppContext);
-  //Хук для сены кнопки карточки (добавлено/не добавлено в корзину)
-  // const [isAdded, setIsAdded] = useState(added);
   // Хук для семну иконки "избранного"
   const [isFavourite, setIsFavourite] = useState(false);
 

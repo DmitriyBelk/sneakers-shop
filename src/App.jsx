@@ -85,16 +85,22 @@ function App() {
   };
 
   const isItemAdded = (id) => {
-    return cartItems.some((obj) => Number(obj.id) === Number(id))
-  }
+    return cartItems.some((obj) => Number(obj.id) === Number(id));
+  };
 
   return (
-    <AppContext.Provider value={{cartItems, items, searchValue, onChangeSearchInput, isItemAdded}}>
-      <div className="App"> 
-        <Header
-          onOpenCart={() => setCartUsage(!cartUsage)}
-        />
-        <Search/>
+    <AppContext.Provider
+      value={{
+        cartItems,
+        items,
+        searchValue,
+        onChangeSearchInput,
+        isItemAdded,
+      }}
+    >
+      <div className="App">
+        <Header onOpenCart={() => setCartUsage(!cartUsage)} />
+        <Search />
         {cartUsage && (
           <Cart
             onDelete={(item) => onDeleteFromCart(item)}

@@ -4,8 +4,7 @@ import "./Cart.sass";
 import CartCard from "./CartCard";
 
 function Cart({ onCloseCart, onDelete }) {
-  const {cartItems} = useContext(AppContext)
-  console.log(cartItems);
+  const { cartItems } = useContext(AppContext);
   return (
     <div className="overlay">
       <div className="drawer">
@@ -36,14 +35,15 @@ function Cart({ onCloseCart, onDelete }) {
                 <li>
                   <span>Итого:</span>
                   <div></div>
-                  <b>{cartItems.reduce((sum, item) => sum + item.price, 0)} руб.</b>
+                  <b>
+                    {cartItems.reduce((sum, item) => sum + item.price, 0)} руб.
+                  </b>
                 </li>
               </ul>
               <button className="btnCart">Оформить заказ</button>
             </div>
           </>
         )}
-        
       </div>
     </div>
   );
